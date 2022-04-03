@@ -139,12 +139,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void Write(View v)
     {
-        
+
         try
         {
             FileOutputStream file_out = openFileOutput("clickHistory.txt", MODE_PRIVATE);
             OutputStreamWriter out_write = new OutputStreamWriter(file_out);
-            out_write.write(sound);
+            out_write.write("sound");
             out_write.close();
 
         }
