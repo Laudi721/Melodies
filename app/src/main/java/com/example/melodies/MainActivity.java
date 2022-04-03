@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     public static final int sound_Drums1 = R.raw.drums1;
     public static final int sound_Drums2 = R.raw.drums2;
     static final int READ_BLOCK_SIZE = 100;
-    public int sound = 0;
+    String[] tabHistory = new String[100];
+
 
     public Button Guitar1;
     public Button Guitar2;
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     public Button Bass2;
     public Button Drums1;
     public Button Drums2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void play(View v)
     {
+        int sound = 0;
+        int index = 0;
 
         if(Guitar1.getId() == v.getId())
         {
@@ -77,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
             Drums1.setBackgroundColor(0xffff0000);
             Drums2.setBackgroundColor(0xffff0000);
 
+            tabHistory[index] += "Guitar_1";
+            index++;
+
         }
         else if(Guitar2.getId() == v.getId())
         {
@@ -88,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
             Bass2.setBackgroundColor(0xffff0000);
             Drums1.setBackgroundColor(0xffff0000);
             Drums2.setBackgroundColor(0xffff0000);
+
+            tabHistory[index] += "Guitar_2";
+            index++;
         }
         else if(Bass1.getId() == v.getId())
         {
@@ -99,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
             Bass2.setBackgroundColor(0xffff0000);
             Drums1.setBackgroundColor(0xffff0000);
             Drums2.setBackgroundColor(0xffff0000);
+
+            tabHistory[index] += "Bass_1";
+            index++;
         }
         else if(Bass2.getId() == v.getId())
         {
@@ -110,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
             Bass1.setBackgroundColor(0xffff0000);
             Drums1.setBackgroundColor(0xffff0000);
             Drums2.setBackgroundColor(0xffff0000);
+
+            tabHistory[index] += "Bass_2";
+            index++;
         }
         else if(Drums1.getId() == v.getId())
         {
@@ -121,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
             Bass1.setBackgroundColor(0xffff0000);
             Bass2.setBackgroundColor(0xffff0000);
             Drums2.setBackgroundColor(0xffff0000);
+
+            tabHistory[index] += "Drums_1";
+            index++;
         }
         else if(Drums2.getId() == v.getId())
         {
@@ -132,10 +149,15 @@ public class MainActivity extends AppCompatActivity {
             Bass1.setBackgroundColor(0xffff0000);
             Bass2.setBackgroundColor(0xffff0000);
             Drums1.setBackgroundColor(0xffff0000);
+
+            tabHistory[index] += "Drums_2";
+            index++;
         }
 
         playSound(this, sound);
     }
+
+
 
     public void Write(View v)
     {
@@ -144,7 +166,11 @@ public class MainActivity extends AppCompatActivity {
         {
             FileOutputStream file_out = openFileOutput("clickHistory.txt", MODE_PRIVATE);
             OutputStreamWriter out_write = new OutputStreamWriter(file_out);
-            out_write.write("sound");
+
+            for(int i = 0; i < tabHistory.length; i++)
+            {
+                out_write.write(tabHistory[i]);
+            }
             out_write.close();
 
         }
