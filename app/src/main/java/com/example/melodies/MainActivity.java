@@ -10,6 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final int sound_Guitar1 = R.raw.guitar1;
@@ -18,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int sound_Bass2 = R.raw.bass2;
     public static final int sound_Drums1 = R.raw.drums1;
     public static final int sound_Drums2 = R.raw.drums2;
+    static final int READ_BLOCK_SIZE = 100;
 
     public Button Guitar1;
     public Button Guitar2;
@@ -127,5 +135,46 @@ public class MainActivity extends AppCompatActivity {
         }
 
         playSound(this, sound);
+    }
+
+    public void Write(View v)
+    {
+
+        try
+        {
+            FileOutputStream file_out = openFileOutput("clickHistory.txt", MODE_PRIVATE);
+            OutputStreamWriter out_write = new OutputStreamWriter(file_out);
+            out_write.write();
+            out_write.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void Read(View v)
+    {
+        try
+        {
+            FileInputStream file_in = openFileInput("clickHistory.txt");
+            InputStreamReader input_read = new InputStreamReader(file_in);
+            char[] inputBuffer = new char[READ_BLOCK_SIZE];
+            String chain ="";
+            int charRead;
+
+            while((charRead = input_read.read(inputBuffer)) > 0)
+            {
+                String readString = String.copyValueOf(inputBuffer,0,charRead);
+                chain += readString;
+            }
+
+            input_read.close();
+            Toast.makeText(getBaseContext(), chain, Toast.LENGTH_LONG).show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }
