@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int sound_Drums1 = R.raw.drums1;
     public static final int sound_Drums2 = R.raw.drums2;
     static final int READ_BLOCK_SIZE = 100;
+    public int sound = 0;
 
     public Button Guitar1;
     public Button Guitar2;
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void play(View v)
     {
-        int sound = 0;
 
         if(Guitar1.getId() == v.getId())
         {
@@ -139,13 +139,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void Write(View v)
     {
-
+        
         try
         {
             FileOutputStream file_out = openFileOutput("clickHistory.txt", MODE_PRIVATE);
             OutputStreamWriter out_write = new OutputStreamWriter(file_out);
-            out_write.write();
+            out_write.write(sound);
             out_write.close();
+
         }
         catch (Exception e)
         {
