@@ -19,12 +19,12 @@ public class MainActivity extends AppCompatActivity {
     public static final int sound_Drums1 = R.raw.drums1;
     public static final int sound_Drums2 = R.raw.drums2;
 
-    Button Guitar1;
-    Button Guitar2;
-    Button Bass1;
-    Button Bass2;
-    Button Drums1;
-    Button Drums2;
+    public Button Guitar1;
+    public Button Guitar2;
+    public Button Bass1;
+    public Button Bass2;
+    public Button Drums1;
+    public Button Drums2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,26 +61,69 @@ public class MainActivity extends AppCompatActivity {
         if(Guitar1.getId() == v.getId())
         {
             sound = sound_Guitar1;
+            Guitar1.setBackgroundColor(0xff00ff00);
+
+            Guitar2.setBackgroundColor(0xffff0000);
+            Bass1.setBackgroundColor(0xffff0000);
+            Bass2.setBackgroundColor(0xffff0000);
+            Drums1.setBackgroundColor(0xffff0000);
+            Drums2.setBackgroundColor(0xffff0000);
+
         }
         else if(Guitar2.getId() == v.getId())
         {
             sound = sound_Guitar2;
+            Guitar2.setBackgroundColor(0xff00ff00);
+
+            Guitar1.setBackgroundColor(0xffff0000);
+            Bass1.setBackgroundColor(0xffff0000);
+            Bass2.setBackgroundColor(0xffff0000);
+            Drums1.setBackgroundColor(0xffff0000);
+            Drums2.setBackgroundColor(0xffff0000);
         }
         else if(Bass1.getId() == v.getId())
         {
             sound = sound_Bass1;
+            Bass1.setBackgroundColor(0xff00ff00);
+
+            Guitar1.setBackgroundColor(0xffff0000);
+            Guitar2.setBackgroundColor(0xffff0000);
+            Bass2.setBackgroundColor(0xffff0000);
+            Drums1.setBackgroundColor(0xffff0000);
+            Drums2.setBackgroundColor(0xffff0000);
         }
         else if(Bass2.getId() == v.getId())
         {
             sound = sound_Bass2;
+            Bass2.setBackgroundColor(0xff00ff00);
+
+            Guitar1.setBackgroundColor(0xffff0000);
+            Guitar2.setBackgroundColor(0xffff0000);
+            Bass1.setBackgroundColor(0xffff0000);
+            Drums1.setBackgroundColor(0xffff0000);
+            Drums2.setBackgroundColor(0xffff0000);
         }
         else if(Drums1.getId() == v.getId())
         {
             sound = sound_Drums1;
+            Drums1.setBackgroundColor(0xff00ff00);
+
+            Guitar1.setBackgroundColor(0xffff0000);
+            Guitar2.setBackgroundColor(0xffff0000);
+            Bass1.setBackgroundColor(0xffff0000);
+            Bass2.setBackgroundColor(0xffff0000);
+            Drums2.setBackgroundColor(0xffff0000);
         }
         else if(Drums2.getId() == v.getId())
         {
             sound = sound_Drums2;
+            Drums2.setBackgroundColor(0xff00ff00);
+
+            Guitar1.setBackgroundColor(0xffff0000);
+            Guitar2.setBackgroundColor(0xffff0000);
+            Bass1.setBackgroundColor(0xffff0000);
+            Bass2.setBackgroundColor(0xffff0000);
+            Drums1.setBackgroundColor(0xffff0000);
         }
 
         playSound(this, sound);
