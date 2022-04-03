@@ -12,10 +12,14 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int sound_Guitar = R.raw.guitar;
+    public static final int sound_Guitar1 = R.raw.guitar1;
+    public static final int sound_Guitar2 = R.raw.guitar2;
+    public static final int sound_Bass = R.raw.bass;
     public static final int sound_Drums = R.raw.drums;
 
-    Button Guitar;
+    Button Guitar1;
+    Button Guitar2;
+    Button Bass;
     Button Drums;
 
     @Override
@@ -23,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Guitar = (Button) findViewById(R.id.button2);
+        Guitar1 = (Button) findViewById(R.id.button2);
+        Guitar2 = (Button) findViewById(R.id.button4);
+        Bass = (Button) findViewById(R.id.button5);
         Drums = (Button) findViewById(R.id.button3);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -46,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
     {
         int sound = 0;
 
-        if(Guitar.getId() == v.getId())
+        if(Guitar1.getId() == v.getId())
         {
-            sound = sound_Guitar;
+            sound = sound_Guitar1;
         }
         else if(Drums.getId() == v.getId())
         {
