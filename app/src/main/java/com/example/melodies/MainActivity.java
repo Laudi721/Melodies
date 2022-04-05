@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     public void play(View v)
     {
         int sound = 0;
-        int index = 0;
 
         if(Guitar1.getId() == v.getId())
         {
