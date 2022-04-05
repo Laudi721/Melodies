@@ -16,6 +16,8 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int sound_Drums1 = R.raw.drums1;
     public static final int sound_Drums2 = R.raw.drums2;
     static final int READ_BLOCK_SIZE = 100;
-    String[] tabHistory = new String[100];
+    ArrayList<String> listHistory = new ArrayList();
 
 
     public Button Guitar1;
@@ -72,104 +74,87 @@ public class MainActivity extends AppCompatActivity {
         {
             sound = sound_Guitar1;
             Guitar1.setBackgroundColor(0xff00ff00);
+            listHistory.add("A");
 
             Guitar2.setBackgroundColor(0xffff0000);
             Bass1.setBackgroundColor(0xffff0000);
             Bass2.setBackgroundColor(0xffff0000);
             Drums1.setBackgroundColor(0xffff0000);
             Drums2.setBackgroundColor(0xffff0000);
-
-            tabHistory[index] += "Guitar_1";
-            index++;
-
         }
         else if(Guitar2.getId() == v.getId())
         {
             sound = sound_Guitar2;
             Guitar2.setBackgroundColor(0xff00ff00);
+            listHistory.add("B");
 
             Guitar1.setBackgroundColor(0xffff0000);
             Bass1.setBackgroundColor(0xffff0000);
             Bass2.setBackgroundColor(0xffff0000);
             Drums1.setBackgroundColor(0xffff0000);
             Drums2.setBackgroundColor(0xffff0000);
-
-            tabHistory[index] += "Guitar_2";
-            index++;
         }
         else if(Bass1.getId() == v.getId())
         {
             sound = sound_Bass1;
             Bass1.setBackgroundColor(0xff00ff00);
+            listHistory.add("C");
 
             Guitar1.setBackgroundColor(0xffff0000);
             Guitar2.setBackgroundColor(0xffff0000);
             Bass2.setBackgroundColor(0xffff0000);
             Drums1.setBackgroundColor(0xffff0000);
             Drums2.setBackgroundColor(0xffff0000);
-
-            tabHistory[index] += "Bass_1";
-            index++;
         }
         else if(Bass2.getId() == v.getId())
         {
             sound = sound_Bass2;
             Bass2.setBackgroundColor(0xff00ff00);
+            listHistory.add("D");
 
             Guitar1.setBackgroundColor(0xffff0000);
             Guitar2.setBackgroundColor(0xffff0000);
             Bass1.setBackgroundColor(0xffff0000);
             Drums1.setBackgroundColor(0xffff0000);
             Drums2.setBackgroundColor(0xffff0000);
-
-            tabHistory[index] += "Bass_2";
-            index++;
         }
         else if(Drums1.getId() == v.getId())
         {
             sound = sound_Drums1;
             Drums1.setBackgroundColor(0xff00ff00);
+            listHistory.add("E");
 
             Guitar1.setBackgroundColor(0xffff0000);
             Guitar2.setBackgroundColor(0xffff0000);
             Bass1.setBackgroundColor(0xffff0000);
             Bass2.setBackgroundColor(0xffff0000);
             Drums2.setBackgroundColor(0xffff0000);
-
-            tabHistory[index] += "Drums_1";
-            index++;
         }
         else if(Drums2.getId() == v.getId())
         {
             sound = sound_Drums2;
             Drums2.setBackgroundColor(0xff00ff00);
+            listHistory.add("F");
 
             Guitar1.setBackgroundColor(0xffff0000);
             Guitar2.setBackgroundColor(0xffff0000);
             Bass1.setBackgroundColor(0xffff0000);
             Bass2.setBackgroundColor(0xffff0000);
             Drums1.setBackgroundColor(0xffff0000);
-
-            tabHistory[index] += "Drums_2";
-            index++;
         }
 
         playSound(this, sound);
     }
 
-
-
     public void Write(View v)
     {
-
         try
         {
             FileOutputStream file_out = openFileOutput("clickHistory.txt", MODE_PRIVATE);
             OutputStreamWriter out_write = new OutputStreamWriter(file_out);
-
-            for(int i = 0; i < tabHistory.length; i++)
+            for(int i = 0; i <listHistory.size(); i++)
             {
-                out_write.write(tabHistory[i]);
+                out_write.write(listHistory.get(i));
             }
             out_write.close();
 
@@ -198,6 +183,26 @@ public class MainActivity extends AppCompatActivity {
 
             input_read.close();
             Toast.makeText(getBaseContext(), chain, Toast.LENGTH_LONG).show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void ClearHistory(View v)
+    {
+        listHistory.clear();
+
+        try
+        {
+            FileOutputStream file_out = openFileOutput("clickHistory.txt", MODE_PRIVATE);
+            OutputStreamWriter out_write = new OutputStreamWriter(file_out);
+            for(int i = 0; i <listHistory.size(); i++)
+            {
+                out_write.write(listHistory.get(i));
+            }
+            out_write.close();
         }
         catch (Exception e)
         {
